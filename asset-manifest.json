@@ -1,14 +1,14 @@
 {
   "files": {
-    "main.js": "/test-vkapp/static/js/main.de05c350.chunk.js",
-    "main.js.map": "/test-vkapp/static/js/main.de05c350.chunk.js.map",
+    "main.js": "/test-vkapp/static/js/main.214269c6.chunk.js",
+    "main.js.map": "/test-vkapp/static/js/main.214269c6.chunk.js.map",
     "runtime-main.js": "/test-vkapp/static/js/runtime-main.51a999cd.js",
     "runtime-main.js.map": "/test-vkapp/static/js/runtime-main.51a999cd.js.map",
     "static/css/2.4e89ce74.chunk.css": "/test-vkapp/static/css/2.4e89ce74.chunk.css",
     "static/js/2.86817cf9.chunk.js": "/test-vkapp/static/js/2.86817cf9.chunk.js",
     "static/js/2.86817cf9.chunk.js.map": "/test-vkapp/static/js/2.86817cf9.chunk.js.map",
     "index.html": "/test-vkapp/index.html",
-    "precache-manifest.29b4c13fba85d28b4ab0f0a0008e8105.js": "/test-vkapp/precache-manifest.29b4c13fba85d28b4ab0f0a0008e8105.js",
+    "precache-manifest.e6c0cd8fb3820755a491c5c3a0570547.js": "/test-vkapp/precache-manifest.e6c0cd8fb3820755a491c5c3a0570547.js",
     "service-worker.js": "/test-vkapp/service-worker.js",
     "static/css/2.4e89ce74.chunk.css.map": "/test-vkapp/static/css/2.4e89ce74.chunk.css.map"
   }
