@@ -1,0 +1,151 @@
+@font-face
+{
+    font-family: 'Manrope';
+    font-weight: 400;
+    font-style: normal;
+
+    font-display: swap;
+    src: url('../fonts/Manrope/Manrope_regular.woff') format('woff'),
+    url('../fonts/Manrope/Manrope_regular.ttf') format('truetype');
+}
+
+@font-face
+{
+    font-family: 'Manrope';
+    font-weight: 500;
+    font-style: normal;
+
+    font-display: swap;
+    src: url('../fonts/Manrope/Manrope_medium.woff') format('woff'),
+    url('../fonts/Manrope/Manrope_medium.ttf') format('truetype');
+}
+
+@font-face
+{
+    font-family: 'Manrope';
+    font-weight: 600;
+    font-style: normal;
+
+    font-display: swap;
+    src: url('../fonts/Manrope/Manrope_semibold.woff') format('woff'),
+    url('../fonts/Manrope/Manrope_semibold.ttf') format('truetype');
+}
+
+@font-face
+{
+    font-family: 'Manrope';
+    font-weight: 700;
+    font-style: normal;
+
+    font-display: swap;
+    src: url('../fonts/Manrope/Manrope_bold.woff') format('woff'),
+    url('../fonts/Manrope/Manrope_bold.ttf') format('truetype');
+}
+
+body {
+    font-family: 'Manrope', 'Open Sans';
+    margin: 0;
+    background-image: url('../img/vkapp-bg.png');
+}
+
+p {
+    margin: 0;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.page-title {
+    text-align: center;
+    color: #3db0fe;
+    font-weight: bold;
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+}
+
+.page-description {
+    margin: 50px 0px 40px;
+    font-size: 90%;
+    text-align: center;
+}
+
+.subscriptions-group-item__info {
+    flex: 1;
+}
+
+.subscriptions-group-item {
+    border: 1px #f9f9f9 solid;
+    border-radius: 4px;
+    margin-bottom: 15px;
+    -webkit-box-shadow: 0px 0px 7px 0px rgba(199,197,197,1);
+    -moz-box-shadow: 0px 0px 7px 0px rgba(199,197,197,1);
+    box-shadow: 0px 0px 7px 0px rgba(199,197,197,1);
+    background-color: #fff;
+    display: flex;
+    flex-flow: row wrap;
+    padding: 10px 10px 10px 15px;
+}
+
+.subscriptions-group-item__title {
+    font-weight: bold;
+}
+
+.subscriptions-group-item__count {
+    color: #3db0fe;
+    font-size: 80%;
+}
+
+.subscriptions-group-item__action-block {
+    display: flex;
+}
+
+.subscriptions-group-button {
+    border-radius: 4px;
+    border: 0;
+    background: #eceaea;
+    cursor: pointer;
+    color: #fff;
+    min-width: 120px;
+    padding: 15px 20px;
+    font-size: 15px;
+    transition: all 0.3s;
+}
+
+.subscriptions-group-button.subscribe-button {
+    background-color: #92b41a;
+}
+
+.subscriptions-group-button.subscribe-button:hover {
+    background-color: #799611;
+}
+
+.subscriptions-group-button.unsubscribe-button {
+    background-color: #b4301a;
+}
+
+.subscriptions-group-button:hover {
+    background-color: #9a1d09;
+    box-shadow: 0px 0px 8px black;
+}
+
+.subscriptions-group-button.unsubscribe-all {
+    padding: 20px 40px;
+}
+
+.subscription-group-page .subscriptions-group-item {
+    text-align: center;
+    justify-content: center;
+}
+
+.subscription-group-page .subscriptions-group-item__info {
+    width: 100%;
+    flex: auto;
+    margin-bottom: 40px;
+}
+
+.subscription-group-page .subscriptions-group-button {
+    padding: 20px 70px;
+}
