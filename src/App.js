@@ -5,6 +5,8 @@ import '@vkontakte/vkui/dist/vkui.css';
 import './css/vkapp.css';
 
 import { Panel, PanelHeader } from '@vkontakte/vkui';
+import SubscriptionsList from './components/SubscribersList';
+import SubscriptionItem from './components/SubscriptionItem';
 
 const getObjectFromURL = (url) => {
     const obj = {};
@@ -33,15 +35,27 @@ const App = () => {
     const [subscriptions, setSubscriptions] = useState([]);
     const [isLoading, setLoading] = useState(false);
 
-    const removeFromSubscriptions = (id) => {
-        const subs = subscriptions.filter(subscription => subscription.id !== id);
-        setSubscriptions(subs);
-    };
-
     const load = () => {
         setSubscriptions([
-            {id: 1, name: 'test 1', count: 1},
-            {id: 2, name: 'test 2', count: 0},
+            { id: 1, name: 'test 1', count: 1, isSubscribed: true, banner: 'https://scx1.b-cdn.net/csz/news/800/2019/1-nature.jpg' },
+            { id: 2, name: 'test 1', count: 1 },
+            { id: 3, name: 'test 1', count: 1 },
+            { id: 4, name: 'test 1', count: 1 },
+            { id: 5, name: 'test 2', count: 0 },
+            { id: 6, name: 'test 2', count: 0 },
+            { id: 7, name: 'test 2', count: 0 },
+            { id: 8, name: 'test 2', count: 0 },
+            { id: 9, name: 'test 2', count: 0 },
+            { id: 10, name: 'test 2', count: 0 },
+            { id: 11, name: 'test 2', count: 0 },
+            { id: 12, name: 'test 2', count: 0 },
+            { id: 13, name: 'test 2', count: 0 },
+            { id: 14, name: 'test 2', count: 0 },
+            { id: 15, name: 'test 2', count: 0 },
+            { id: 16, name: 'test 2', count: 0 },
+            { id: 17, name: 'test 2', count: 0 },
+            { id: 18, name: 'test 2', count: 0 },
+            { id: 19, name: 'test 2', count: 0 },
         ]);
     };
 
@@ -49,37 +63,30 @@ const App = () => {
         load();
     });
 
+
+    const [arr, setArr] = useState([1, 2, 3]);
+    const item = subscriptions.find(subscription => subscription.id == subscriptionId);
+
+    const pageDescription = item
+        ? (item.description || '')
+        : 'В этом списке рассылок можете выбрать те рассылки нашего сообщества, которые будут приходить в максимально неудобное вам время и которые вы не будете читать. Независимо от этого мы будем их вам присылать, так что подумайте дважды';
+
     return (
         <View activePanel="main">
             <Panel id="main">
                 <PanelHeader>Рассылка сообщений</PanelHeader>
+
+                {item && item.banner
+                    && <img src="https://scx1.b-cdn.net/csz/news/800/2019/1-nature.jpg" alt="Баннер" style={{ maxWidth: '100%' }}></img>}
+
                 <div style={{ padding: '15px' }}>
-                    <p className="page-title">
-                        <img src="https://sun9-44.userapi.com/c845418/v845418151/d56e6/f677KFnZxQ8.jpg?ava=1" alt="Аватарка паблика" style={{ borderRadius: '50%', marginRight: '16px' }}></img>
-                        Pictures box
-                    </p>
-                    <p className="page-description">В этом списке рассылок можете выбрать те рассылки нашего сообщества,
-                        которые будут приходить в максимально неудобное вам время и которые вы не будете читать.
-                    Независимо от этого мы будем их вам присылать, так что подумайте дважды</p>
 
-                    {subscriptionId ? }
+                    {(!item || !item.banner)
+                        && <p className="page-title">
+                            <img src="https://sun9-44.userapi.com/c845418/v845418151/d56e6/f677KFnZxQ8.jpg?ava=1" alt="Аватарка паблика" style={{ borderRadius: '50%', marginRight: '16px' }} />
+                            pictures box</p>}
 
-                    {subscriptions.map(subscription => (
-                        <div key={subscription.id} className="subscriptions-group-item">
-                            <div className="subscriptions-group-item__info">
-                                <p className="subscriptions-group-item__title">{subscription.name}</p>
-                                <p className="subscriptions-group-item__count">Подписчиков: {subscription.count}</p>
-                            </div>
-                            <div className="subscriptions-group-item__action-block">
-                                <button
-                                    onClick={() => removeFromSubscriptions(subscription.id)}
-                                    data-source="1"
-                                    className="subscriptions-group-button subscribe-button"
-                                    data-id={subscription.id}>Подписаться</button>
-                            </div>
-                        </div>
-                    ))}
-                    
+                    <p className="page-description">{pageDescription}</p>
                 </div>
             </Panel>
         </View >

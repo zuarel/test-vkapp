@@ -72,11 +72,10 @@ p {
     text-align: center;
 }
 
-.subscriptions-group-item__info {
-    flex: 1;
-}
-
+/* ------------ */
 .subscriptions-group-item {
+    text-align: center;
+    justify-content: center;
     border: 1px #f9f9f9 solid;
     border-radius: 4px;
     margin-bottom: 15px;
@@ -87,6 +86,26 @@ p {
     display: flex;
     flex-flow: row wrap;
     padding: 10px 10px 10px 15px;
+}
+
+.subscriptions-group-item__info {
+    width: 100%;
+    flex: auto;
+    margin-bottom: 40px;
+}
+
+.subscriptions-group-button {
+    padding: 20px 70px;
+}
+/* ------------------ */
+
+.subscription-group-lists .subscriptions-group-item__info {
+    flex: 1;
+    margin-bottom: 0px;
+}
+
+.subscription-group-lists .subscriptions-group-item {
+    text-align: left;
 }
 
 .subscriptions-group-item__title {
@@ -133,19 +152,4 @@ p {
 
 .subscriptions-group-button.unsubscribe-all {
     padding: 20px 40px;
-}
-
-.subscription-group-page .subscriptions-group-item {
-    text-align: center;
-    justify-content: center;
-}
-
-.subscription-group-page .subscriptions-group-item__info {
-    width: 100%;
-    flex: auto;
-    margin-bottom: 40px;
-}
-
-.subscription-group-page .subscriptions-group-button {
-    padding: 20px 70px;
 }
