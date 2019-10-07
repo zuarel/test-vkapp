@@ -1,18 +1,25 @@
 {
   "files": {
-    "main.css": "/test-vkapp/static/css/main.23ba1ce2.chunk.css",
-    "main.js": "/test-vkapp/static/js/main.a73d6dfc.chunk.js",
-    "main.js.map": "/test-vkapp/static/js/main.a73d6dfc.chunk.js.map",
-    "runtime-main.js": "/test-vkapp/static/js/runtime-main.51a999cd.js",
-    "runtime-main.js.map": "/test-vkapp/static/js/runtime-main.51a999cd.js.map",
-    "static/css/2.4e89ce74.chunk.css": "/test-vkapp/static/css/2.4e89ce74.chunk.css",
-    "static/js/2.e7319e4d.chunk.js": "/test-vkapp/static/js/2.e7319e4d.chunk.js",
-    "static/js/2.e7319e4d.chunk.js.map": "/test-vkapp/static/js/2.e7319e4d.chunk.js.map",
+    "main.css": "/test-vkapp/static/css/main.a09c03d9.chunk.css",
+    "main.js": "/test-vkapp/static/js/main.4676610b.chunk.js",
+    "main.js.map": "/test-vkapp/static/js/main.4676610b.chunk.js.map",
+    "runtime-main.js": "/test-vkapp/static/js/runtime-main.b8e3dd43.js",
+    "runtime-main.js.map": "/test-vkapp/static/js/runtime-main.b8e3dd43.js.map",
+    "static/css/2.01749317.chunk.css": "/test-vkapp/static/css/2.01749317.chunk.css",
+    "static/js/2.719b4c3c.chunk.js": "/test-vkapp/static/js/2.719b4c3c.chunk.js",
+    "static/js/2.719b4c3c.chunk.js.map": "/test-vkapp/static/js/2.719b4c3c.chunk.js.map",
     "index.html": "/test-vkapp/index.html",
-    "precache-manifest.3a4bdd103c81f4a480a14cfbc5e10742.js": "/test-vkapp/precache-manifest.3a4bdd103c81f4a480a14cfbc5e10742.js",
+    "precache-manifest.458a237c9af60d68e0fcb5b385c38fbd.js": "/test-vkapp/precache-manifest.458a237c9af60d68e0fcb5b385c38fbd.js",
     "service-worker.js": "/test-vkapp/service-worker.js",
-    "static/css/2.4e89ce74.chunk.css.map": "/test-vkapp/static/css/2.4e89ce74.chunk.css.map",
-    "static/css/main.23ba1ce2.chunk.css.map": "/test-vkapp/static/css/main.23ba1ce2.chunk.css.map",
+    "static/css/2.01749317.chunk.css.map": "/test-vkapp/static/css/2.01749317.chunk.css.map",
+    "static/css/main.a09c03d9.chunk.css.map": "/test-vkapp/static/css/main.a09c03d9.chunk.css.map",
     "static/media/vkapp.css": "/test-vkapp/static/media/vkapp-bg.9706eefa.png"
-  }
+  },
+  "entrypoints": [
+    "static/js/runtime-main.b8e3dd43.js",
+    "static/css/2.01749317.chunk.css",
+    "static/js/2.719b4c3c.chunk.js",
+    "static/css/main.a09c03d9.chunk.css",
+    "static/js/main.4676610b.chunk.js"
+  ]
 }
