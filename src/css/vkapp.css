@@ -74,7 +74,6 @@ p {
 
 /* ------------ */
 .subscriptions-group-item {
-    text-align: center;
     justify-content: center;
     border: 1px #f9f9f9 solid;
     border-radius: 4px;
@@ -88,9 +87,28 @@ p {
     padding: 10px 10px 10px 15px;
 }
 
+.subscriptions-group-item.subscription-page {
+    text-align: center;
+}
+
 .subscriptions-group-item__info {
-    width: 100%;
     flex: auto;
+    width: 100%;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+@media only screen and (min-width: 768px) {
+    .subscriptions-group-item__info {
+        width: auto;
+        text-align: left;
+        margin-bottom: 0px;
+    }
+}
+
+.subscription-page .subscriptions-group-item__info {
+    width: 100%;
+    text-align: center;
     margin-bottom: 40px;
 }
 
