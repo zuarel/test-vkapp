@@ -264,7 +264,7 @@ const App = () => {
                 }
 
                 subscription.isSubscribed = false;
-                subscription.count = item.count - 1
+                subscription.count = subscription.count - 1
             }
 
             setSubscriptions(s);
