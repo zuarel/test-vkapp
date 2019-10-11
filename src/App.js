@@ -33,6 +33,7 @@ const App = () => {
     const vk_group_id = searchObject.vk_group_id || '';
     const user_vk_id = searchObject.vk_user_id;
     const subscriptionId = hashObject.s || '';
+    var tag_id = hashObject.u || '';
 
     const [subscriptions, setSubscriptions] = useState([]);
     const [isGroupInfoLoading, setGroupInfoLoading] = useState(false);
@@ -99,12 +100,24 @@ const App = () => {
         : groupInfo.description || '';
 
     const subscribeItem = async (item) => {
-        const res = await fetch('https://smm-n.targethunter.dev/ajax?' + buildQuery({
-            user_vk_id,
-            method: 'vkapp.subscribe_user',
-            subscribe_id: item.id,
-            group_id: vk_group_id,
-        }));
+
+        var fd = new FormData();
+
+        fd.append('user_vk_id', user_vk_id);
+        fd.append('group_id', vk_group_id);
+        fd.append('subscribe_id', item.id);
+        fd.append('source', String(source));
+        fd.append('tag_id', tag_id);
+
+        fd.append('utm_source', hashObject['utm_source'] || '');
+        fd.append('utm_medium', hashObject['utm_medium'] || '');
+        fd.append('utm_campaign', hashObject['utm_campaign'] || '');
+        fd.append('utm_content', hashObject['utm_content'] || '');
+        fd.append('utm_term', hashObject['utm_term'] || '');
+        fd.append('params', JSON.stringify(searchObject));
+
+        const res = await fetch('https://smm-n.targethunter.dev/ajax?' + buildQuery({ method: 'vkapp.subscribe_user', }),
+            { method: 'POST', body: fd });
 
         const { status, ...data } = await res.json();
 
@@ -153,6 +166,7 @@ const App = () => {
             await subscribeItem(item);
             openSubscribeModal(true);
         } catch (error) {
+            setPopout(null);
             alert(error.toString());
         }
 
@@ -160,52 +174,77 @@ const App = () => {
     };
 
     const unsubscribeItem = async (item) => {
-        try {
-            const res = await fetch('https://smm-n.targethunter.dev/ajax?' + buildQuery({
-                user_vk_id,
-                method: 'vkapp.unsubscribe_user',
-                subscribe_id: item.id,
-                group_id: vk_group_id,
-            }));
 
-            const { status, ...data } = await res.json();
+        const fd = new FormData();
 
-            if (status !== 'ok') {
-                throw new Error(data.text || 'Что-то пошло не так. Не удалось отписаться');
-            }
+        fd.append('user_vk_id', user_vk_id);
+        fd.append('group_id', vk_group_id);
+        fd.append('subscribe_id', item.id);
+        fd.append('source', String(source));
+        fd.append('tag_id', tag_id);
 
-            item.isSubscribed = false;
-            item.count = item.count - 1
+        fd.append('utm_source', hashObject['utm_source'] || '');
+        fd.append('utm_medium', hashObject['utm_medium'] || '');
+        fd.append('utm_campaign', hashObject['utm_campaign'] || '');
+        fd.append('utm_content', hashObject['utm_content'] || '');
+        fd.append('utm_term', hashObject['utm_term'] || '');
+        fd.append('params', JSON.stringify(searchObject));
 
-            return item;
+        const res = await fetch('https://smm-n.targethunter.dev/ajax?' + buildQuery({
+            method: 'vkapp.unsubscribe_user',
+        }), { method: 'POST', body: fd });
 
-        } catch (error) {
-            alert(error.toString());
+        const { status, ...data } = await res.json();
+
+        if (status !== 'ok') {
+            throw new Error(data.text || 'Что-то пошло не так. Не удалось отписаться');
         }
+
+        item.isSubscribed = false;
+        item.count = item.count - 1
+
+        return item;
     }
 
     const onUnsubscribe = async (item) => {
+        try {
+            showSpinner();
 
-        showSpinner();
+            var s = subscriptions.map(item => item);
+            var i = s.find(subscription => subscription.id === item.id);
 
-        var s = subscriptions.map(item => item);
-        var i = s.find(subscription => subscription.id === item.id);
+            await unsubscribeItem(i);
 
-        await unsubscribeItem(i);
-
-        setSubscriptions(s);
-        openUnsubscribeModal();
+            setSubscriptions(s);
+            openUnsubscribeModal();
+        } catch (error) {
+            setPopout(null);
+            alert(error.message);
+        }
     };
 
     const unsubscribeAll = async () => {
 
         showSpinner();
         try {
+
+            const fd = new FormData();
+
+            fd.append('user_vk_id', user_vk_id);
+            fd.append('group_id', vk_group_id);
+            fd.append('source', String(source));
+            fd.append('tag_id', tag_id);
+
+            fd.append('utm_source', hashObject['utm_source'] || '');
+            fd.append('utm_medium', hashObject['utm_medium'] || '');
+            fd.append('utm_campaign', hashObject['utm_campaign'] || '');
+            fd.append('utm_content', hashObject['utm_content'] || '');
+            fd.append('utm_term', hashObject['utm_term'] || '');
+            fd.append('params', JSON.stringify(searchObject));
+
             const res = await fetch('https://smm-n.targethunter.dev/ajax?' + buildQuery({
-                user_vk_id,
                 method: 'vkapp.unsubscribe_all',
-                group_id: vk_group_id,
-            }));
+            }), { method: 'POST', body: fd });
 
 
             const data = await res.json();
@@ -219,18 +258,22 @@ const App = () => {
             const s = subscriptions.map(item => item);
 
             for (const subscription of s) {
+                
                 if (!subscription.isSubscribed) {
                     continue;
                 }
 
-                await unsubscribeItem(subscription);
+                subscription.isSubscribed = false;
+                subscription.count = item.count - 1
             }
 
             setSubscriptions(s);
             openUnsubscribeModal();
         } catch (error) {
+            setPopout(null);
             alert(error.toString());
         }
+
     };
 
     const openSubscribeModal = (showDialogLink) => {
