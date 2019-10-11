@@ -1,6 +1,6 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "9bedfbbb83bf52d4f86515b8b4cf3ea7",
+    "revision": "34f1da40b0161151a5993c216cd2e412",
     "url": "/test-vkapp/index.html"
   },
   {
@@ -8,7 +8,7 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/test-vkapp/static/css/2.01749317.chunk.css"
   },
   {
-    "revision": "a0b1fec34f8a55ccb9f2",
+    "revision": "c585c430f9a811b9d11f",
     "url": "/test-vkapp/static/css/main.bfcbbb64.chunk.css"
   },
   {
@@ -16,8 +16,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/test-vkapp/static/js/2.0ccdc056.chunk.js"
   },
   {
-    "revision": "a0b1fec34f8a55ccb9f2",
-    "url": "/test-vkapp/static/js/main.52e54ee6.chunk.js"
+    "revision": "c585c430f9a811b9d11f",
+    "url": "/test-vkapp/static/js/main.952b7899.chunk.js"
   },
   {
     "revision": "9b880683a273c0a914bd",
