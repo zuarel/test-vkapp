@@ -1,25 +1,26 @@
 {
   "files": {
-    "main.css": "/test-vkapp/static/css/main.bfcbbb64.chunk.css",
-    "main.js": "/test-vkapp/static/js/main.8483af6f.chunk.js",
-    "main.js.map": "/test-vkapp/static/js/main.8483af6f.chunk.js.map",
-    "runtime-main.js": "/test-vkapp/static/js/runtime-main.b8e3dd43.js",
-    "runtime-main.js.map": "/test-vkapp/static/js/runtime-main.b8e3dd43.js.map",
-    "static/css/2.01749317.chunk.css": "/test-vkapp/static/css/2.01749317.chunk.css",
-    "static/js/2.0ccdc056.chunk.js": "/test-vkapp/static/js/2.0ccdc056.chunk.js",
-    "static/js/2.0ccdc056.chunk.js.map": "/test-vkapp/static/js/2.0ccdc056.chunk.js.map",
+    "main.css": "/test-vkapp/static/css/main.5e35c8cb.chunk.css",
+    "main.js": "/test-vkapp/static/js/main.4c14bd27.chunk.js",
+    "main.js.map": "/test-vkapp/static/js/main.4c14bd27.chunk.js.map",
+    "runtime-main.js": "/test-vkapp/static/js/runtime-main.49044d2f.js",
+    "runtime-main.js.map": "/test-vkapp/static/js/runtime-main.49044d2f.js.map",
+    "static/css/2.2cfa1b23.chunk.css": "/test-vkapp/static/css/2.2cfa1b23.chunk.css",
+    "static/js/2.99d15158.chunk.js": "/test-vkapp/static/js/2.99d15158.chunk.js",
+    "static/js/2.99d15158.chunk.js.map": "/test-vkapp/static/js/2.99d15158.chunk.js.map",
     "index.html": "/test-vkapp/index.html",
-    "precache-manifest.e10af4e1c0b94e3fd8183a9485269c95.js": "/test-vkapp/precache-manifest.e10af4e1c0b94e3fd8183a9485269c95.js",
+    "precache-manifest.c55d8ec747ad2ab0453cbc5bc97a1541.js": "/test-vkapp/precache-manifest.c55d8ec747ad2ab0453cbc5bc97a1541.js",
     "service-worker.js": "/test-vkapp/service-worker.js",
-    "static/css/2.01749317.chunk.css.map": "/test-vkapp/static/css/2.01749317.chunk.css.map",
-    "static/css/main.bfcbbb64.chunk.css.map": "/test-vkapp/static/css/main.bfcbbb64.chunk.css.map",
+    "static/css/2.2cfa1b23.chunk.css.map": "/test-vkapp/static/css/2.2cfa1b23.chunk.css.map",
+    "static/css/main.5e35c8cb.chunk.css.map": "/test-vkapp/static/css/main.5e35c8cb.chunk.css.map",
+    "static/js/2.99d15158.chunk.js.LICENSE.txt": "/test-vkapp/static/js/2.99d15158.chunk.js.LICENSE.txt",
     "static/media/vkapp.css": "/test-vkapp/static/media/vkapp-bg.9706eefa.png"
   },
   "entrypoints": [
-    "static/js/runtime-main.b8e3dd43.js",
-    "static/css/2.01749317.chunk.css",
-    "static/js/2.0ccdc056.chunk.js",
-    "static/css/main.bfcbbb64.chunk.css",
-    "static/js/main.8483af6f.chunk.js"
+    "static/js/runtime-main.49044d2f.js",
+    "static/css/2.2cfa1b23.chunk.css",
+    "static/js/2.99d15158.chunk.js",
+    "static/css/main.5e35c8cb.chunk.css",
+    "static/js/main.4c14bd27.chunk.js"
   ]
 }
