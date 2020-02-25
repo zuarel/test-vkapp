@@ -17,6 +17,7 @@ const SubscriptionItem = (props) => {
             <div className="subscriptions-group-item__info">
                 <p className="subscriptions-group-item__title">{item.name}</p>
                 <p className="subscriptions-group-item__count">Подписчиков: {item.count}</p>
+                <p>{item.id}</p>
             </div>
             <div className="subscriptions-group-item__action-block">
 
