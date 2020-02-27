@@ -3,9 +3,8 @@ import connect from '@vkontakte/vk-connect';
 import View from '@vkontakte/vkui/dist/components/View/View';
 import SubscriptionItem from '../components/SubscriptionItem';
 
-const SinglePage = ({ id: subscriptionId, subscriptions }) => {
-
-    return (<h1>asdad</h1>);
+const SinglePage = ({ item }) => {
+    return <SubscriptionItem item={item} />;
 }
 
 export default SinglePage;

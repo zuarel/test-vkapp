@@ -1,17 +1,20 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 
 const SubscriptionItem = (props) => {
+
+    console.log('from sub item');
+    
+
     const {
         item,
         source,
-        subscribe,
-        unsubscribe,
+        handleAction,
         isSubscriptionPage,
         unsubscribeColor,
         subscribeColor
     } = props;
-    
+
     return (
         <div className={`subscriptions-group-item ${isSubscriptionPage && 'subscription-page'}`}>
             <div className="subscriptions-group-item__info">
@@ -23,12 +26,12 @@ const SubscriptionItem = (props) => {
 
                 {item.isSubscribed
                     ? <button data-source={source}
-                        onClick={() => unsubscribe(item)}
-                        style={{backgroundColor: unsubscribeColor ? unsubscribeColor : ''}}
+                        style={{ backgroundColor: unsubscribeColor ? unsubscribeColor : '' }}
+                        onClick={() => handleAction('unsubscribe', item)}
                         className="subscriptions-group-button unsubscribe-button">Отписаться</button>
                     : <button data-source={source}
-                        onClick={() => subscribe(item)}
-                        style={{backgroundColor: subscribeColor ? subscribeColor : ''}}
+                        style={{ backgroundColor: subscribeColor ? subscribeColor : '' }}
+                        onClick={() => handleAction('subscribe', item)}
                         className="subscriptions-group-button subscribe-button">Подписаться</button>
                 }
 

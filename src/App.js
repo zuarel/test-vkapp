@@ -5,9 +5,9 @@ import '@vkontakte/vkui/dist/vkui.css';
 import './css/vkapp.css';
 
 import { Panel, PanelHeader, Alert, Div, Button, ScreenSpinner } from '@vkontakte/vkui';
-import SubscriptionItem from './components/SubscriptionItem';
-import MainPage from './pages/main';
-import SinglePage from './pages/single';
+import SubscriptionsList from './components/SubscribersList';
+import UnsubscribeAll from './components/UnsubscribeAll';
+
 
 
 const getObjectFromURL = (url) => {
@@ -35,8 +35,6 @@ const vk_group_id = searchObject.vk_group_id || '';
 const user_vk_id = searchObject.vk_user_id;
 
 function useFetch(url) {
-    // const [data, setData] = useState([]);
-    // const [loading, setLoading] = useState(true);
 
     const [params, setParams] = useState({ data: [], loading: true });
 
@@ -60,23 +58,51 @@ const App = () => {
     console.log('app called');
 
     const [popout, setPopout] = useState(null);
+    const [subscriptions, setSubscriptions] = useState();
     const { data, loading } = useFetch('https://smm-n.targethunter.dev/ajax?' + buildQuery({ method: 'vkapp.load_info', group_id: vk_group_id, user_vk_id }));
 
     if (loading) {
-        return "";
+        return "loading";
     }
 
-    const { subscriptions, ...groupInfo } = data;
+    const groupInfo = data;
 
-    const page = !hashObject.s
-        ? <MainPage subscriptions={subscriptions} />
-        : <SinglePage id={hashObject.s} subscriptions={subscriptions} />
+    const item = hashObject.s
+        ? subscriptions.find(subscription => subscription.id === hashObject.s)
+        : null;
+
+    const pageDescription = item
+        ? (item.description || '')
+        : groupInfo.description || '';
+
+    const handleAction = (action, item) => {
+        
+    }
 
     return (
         <View popout={popout} activePanel="main">
             <Panel id="main">
                 <PanelHeader>Рассылка сообщений</PanelHeader>
-                {page}
+                <Div style={{ textAlign: 'center' }}>
+                    {item && item.banner
+                        && <img src={item.banner} alt="Баннер" style={{ maxWidth: '100%' }} />}
+
+                    {groupInfo.banner
+                        && <img src={groupInfo.banner} alt="Баннер" style={{ maxWidth: '100%' }} />}
+                </Div>
+                <Div style={{ padding: '15px' }}>
+                    {((!item || !item.banner) && !groupInfo.banner)
+                        && <p className="page-title">
+                            <img src={groupInfo.avatar} alt="Аватарка паблика" style={{ borderRadius: '50%', marginRight: '16px' }} />
+                            {groupInfo.name}</p>
+                    }
+
+                    <p className="page-description">{pageDescription}</p>
+                    <div className="subscription-group-lists">
+                       <SubscriptionsList handleAction={handleAction} subscriptions={subscriptions} />
+                    </div>
+                    <UnsubscribeAll groupInfo={groupInfo} />
+                </Div>
             </Panel>
         </View >
     );
