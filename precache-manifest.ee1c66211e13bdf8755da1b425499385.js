@@ -1,27 +1,27 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "ecd344d628f8606b013e86a80dc9e0c1",
+    "revision": "9dca99adc33bcba1e4b9beaeda4ef06c",
     "url": "/test-vkapp/index.html"
   },
   {
-    "revision": "0d74bdb24acaa8431149",
+    "revision": "4a8570d2ef517590b2ed",
     "url": "/test-vkapp/static/css/2.2cfa1b23.chunk.css"
   },
   {
-    "revision": "92d4facc2a2480fe4b97",
-    "url": "/test-vkapp/static/css/main.f914c9a0.chunk.css"
+    "revision": "6c5f4047c5a0dfd24f69",
+    "url": "/test-vkapp/static/css/main.5e35c8cb.chunk.css"
   },
   {
-    "revision": "0d74bdb24acaa8431149",
-    "url": "/test-vkapp/static/js/2.d6f0f21e.chunk.js"
+    "revision": "4a8570d2ef517590b2ed",
+    "url": "/test-vkapp/static/js/2.eb90d796.chunk.js"
   },
   {
-    "revision": "99bd0487192ec9e7d9ee8fbbd91ee444",
-    "url": "/test-vkapp/static/js/2.d6f0f21e.chunk.js.LICENSE.txt"
+    "revision": "f231859d6585c4cd5f80c344783ed269",
+    "url": "/test-vkapp/static/js/2.eb90d796.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "92d4facc2a2480fe4b97",
-    "url": "/test-vkapp/static/js/main.9953eb4f.chunk.js"
+    "revision": "6c5f4047c5a0dfd24f69",
+    "url": "/test-vkapp/static/js/main.9092074d.chunk.js"
   },
   {
     "revision": "d517a49b5f052ad7f0e0",
