@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
 
 const buildQuery = (params) => {
@@ -53,7 +53,7 @@ const UnsubscribeAll = (props) => {
     return (
         <div style={{ textAlign: 'center' }}>
             <button
-                data-source="1" style={{ backgroundColor: props.unsubscribe_color }}
+                style={{ backgroundColor: props.unsubscribe_color }}
                 className="subscriptions-group-button unsubscribe-button unsubscribe-all"
                 onClick={() => unsubscribeAll()}
                 id="unsubscribe-all">Отписаться от всех рассылок</button>
@@ -63,6 +63,9 @@ const UnsubscribeAll = (props) => {
 
 export default connect(state => ({
     subscribesCount: state.subscribesCount,
+    source: state.source,
+    unsubscribe_color: state.unsubscribe_color,
+    subscribe_color: state.subscribe_color,
     searchObject: state.searchObject,
-    hashObject: state.hashObject    
+    hashObject: state.hashObject
 }))(UnsubscribeAll);

@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
+import bridge from '@vkontakte/vk-bridge';
 
 
 const buildQuery = (params) => {
@@ -19,7 +20,34 @@ const SubscriptionItem = (props) => {
         subscribe_color: subscribeColor,
     } = props;
 
+    async function checkMessagesFromGroupAllowed(group_id, user_vk_id, isAllowedCallback) {
+        var fd = new FormData();
+
+        fd.append('user_vk_id', props.searchObject.vk_user_id);
+        fd.append('group_id', props.searchObject.vk_group_id);
+
+        const res = await fetch('https://smm-n.targethunter.dev/ajax?' + buildQuery({ method: 'vkapp.check_allowed', }),
+            { method: 'POST', body: fd });
+
+        const { status, ...data } = await res.json();
+
+        return data;
+
+    }
+
     const toggleSubscribe = async (item) => {
+
+        const { is_messages_from_group_allowed } = await checkMessagesFromGroupAllowed();
+
+        if (!is_messages_from_group_allowed) {
+            const res2 = await bridge.send('VKWebAppAllowMessagesFromGroup', { group_id: +props.searchObject.vk_group_id });
+
+            console.log(res2);
+            
+        }
+
+        return;
+
         var fd = new FormData();
 
         fd.append('user_vk_id', props.searchObject.vk_user_id);
@@ -48,16 +76,15 @@ const SubscriptionItem = (props) => {
 
         i.isSubscribed = !item.isSubscribed;
         i.count = item.isSubscribed ? item.count + -1 : (item.count + 1);
-        
+
         dispatch({ type: 'TOGGLE_SUBSCRIBE', payload: { type: !item.isSubscribed ? 'subscribe' : 'unsubscribe', id: item.id } });
     };
 
     return (
-        <div className={`subscriptions-group-item ${isSubscriptionPage && 'subscription-page'}`}>
+        <div className={`subscriptions-group-item ${isSubscriptionPage ? 'subscription-page' : ''}`}>
             <div className="subscriptions-group-item__info">
                 <p className="subscriptions-group-item__title">{item.name}</p>
-                <p className="subscriptions-group-item__count">Подписчиков: {item.count}</p>
-                <p>{item.id}</p>
+                {item.hide_count !== 1 && <p className="subscriptions-group-item__count">Подписчиков: {item.count}</p>}
             </div>
             <div className="subscriptions-group-item__action-block">
 
@@ -79,9 +106,9 @@ const SubscriptionItem = (props) => {
 
 export default connect(state => ({
     source: state.source,
-    isSubscriptionPage: state.isSubscriptionPage,
-    unsubscribe_color: state.unsubscribeColor,
-    subscribe_color: state.subscribeColor,
+    unsubscribe_color: state.unsubscribe_color,
+    subscribe_color: state.subscribe_color,
     searchObject: state.searchObject,
     hashObject: state.hashObject,
+    isSubscriptionPage: !!state.hashObject.s
 }))(SubscriptionItem);

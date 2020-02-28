@@ -1,9 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import SubscriptionItem from './SubscriptionItem';
 import { connect } from 'react-redux'
 
-const SubscriptionsList = ({ subscriptions, source, unsubscribe_color }) => {
-    // const SubscriptionsList = (props) => {    
+const SubscriptionsList = ({ subscriptions, source }) => {
 
     console.log('from sub list');
 
@@ -16,5 +15,4 @@ const SubscriptionsList = ({ subscriptions, source, unsubscribe_color }) => {
     );
 };
 
-// export default connect(state => ({ ...state }))(SubscriptionsList);
-export default connect(state => ({ subscriptions: state.subscriptions, unsubscribe_color: state.unsubscribe_color }))(SubscriptionsList);
+export default connect(state => ({ subscriptions: state.subscriptions, }))(SubscriptionsList);

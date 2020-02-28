@@ -137,6 +137,7 @@ p {
 
 .subscriptions-group-item__action-block {
     display: flex;
+    align-items: center;
 }
 
 .subscriptions-group-button {

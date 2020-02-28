@@ -5,9 +5,10 @@ import { connect } from 'react-redux';
 import '@vkontakte/vkui/dist/vkui.css';
 import './css/vkapp.css';
 
-import { Panel, PanelHeader, ScreenSpinner } from '@vkontakte/vkui';
+import { Panel, PanelHeader, ScreenSpinner, Alert } from '@vkontakte/vkui';
 import SubscriptionsList from './components/SubscribersList';
 import UnsubscribeAll from './components/UnsubscribeAll';
+import PageHeader from './components/PageHeader';
 
 const getObjectFromURL = (url) => {
     const search = url.slice(1);
@@ -32,7 +33,8 @@ let searchObject = getObjectFromURL(window.location.search);
 
 const mapStateToProps = state => ({
     loading: state.loading,
-    popout: state.popout
+    popout: state.popout,
+    html: state.html,
 });
 
 const loadSubscriptions = () => {
@@ -42,56 +44,106 @@ const loadSubscriptions = () => {
 
     return dispatch => {
         dispatch({ type: 'LOAD_BEGIN' });
+
+        if (!vk_group_id || !user_vk_id) {
+            dispatch({ type: 'LOAD_FAILED', payload: { html: 'Откройте приложение из меню сообщества или по прямой ссылке' } });
+            return;
+        }
+
         fetch('https://smm-n.targethunter.dev/ajax?' + buildQuery({ method: 'vkapp.load_info', group_id: vk_group_id, user_vk_id }))
             .then(response => response.json())
             .then(json => {
+
                 const subscribesCount = json.subscriptions.filter(item => item.isSubscribed === true).length;
-                let subscriptions = json.subscriptions;
+                let { subscriptions, ...groupInfo } = json;
 
                 if (hashObject.s) {
                     subscriptions = subscriptions.filter(sub => sub.id === hashObject.s);
                 }
 
-                dispatch({ type: 'INFO_LOADED', payload: { ...json, searchObject, hashObject, subscribesCount, subscriptions } });
+                dispatch({
+                    type: 'INFO_LOADED',
+                    payload: {
+                        ...json,
+                        groupInfo,
+                        searchObject,
+                        hashObject,
+                        item: hashObject.s ? { ...subscriptions.find(item => item.id === hashObject.s) } : null,
+                        subscribesCount,
+                        subscriptions,
+                        source: hashObject.s ? 2 : 1 // 2 - подписка по прямой ссылке, 1 - страница всех рассылок
+                    }
+                });
             })
     }
 }
 
-const App = ({ loading, dispatch, unsubscribe_color, popout }) => {
+const App = ({ loading, dispatch, groupInfo, popout, html }) => {
 
     console.log('call app');
 
-    
     useEffect(() => {
         const vkBridgeSubscribe = event => {
+            
+            console.log(event);
+            
+            
             const { detail } = event;
-                const { type, data } = detail;
-    
-                if (type === 'VKWebAppViewRestore') {
-    
-                    hashObject = getObjectFromURL(window.location.hash);
-                    searchObject = getObjectFromURL(window.location.search);
-    
-                    dispatch(loadSubscriptions());
-                }
+            const { type } = detail;
+
+            if (type === 'VKWebAppViewRestore') {
+
+                hashObject = getObjectFromURL(window.location.hash);
+                searchObject = getObjectFromURL(window.location.search);
+
+                dispatch(loadSubscriptions());
+            }
         }
 
         dispatch(loadSubscriptions());
 
         bridge.subscribe(vkBridgeSubscribe);
         return () => bridge.unsubscribe(vkBridgeSubscribe);
-    }, [dispatch, loadSubscriptions])
+    }, [dispatch])
 
     if (loading) {
-        return <ScreenSpinner size="large" />;
+        return (
+            <View popout={popout} activePanel="main">
+                <Panel id="main">
+                    <PanelHeader>Рассылка сообщений</PanelHeader>
+                    <ScreenSpinner size="large" />
+                </Panel>
+            </View >
+        );
+    }
+
+    if (html) {
+
+        const alert = (<Alert actions={[{
+            title: 'закрыть',
+            autoclose: true,
+            style: 'cancel'
+        }]} onClose={() => { }}>
+            <h2>Что-то пошло не так.</h2>
+            <p>{html}</p>
+        </Alert>)
+
+        return (
+            <View popout={alert} activePanel="main">
+                <Panel id="main">
+                    <PanelHeader>Рассылка сообщений</PanelHeader>
+                </Panel>
+            </View >
+        )
     }
 
     return (
         <View popout={popout} activePanel="main">
             <Panel id="main">
                 <PanelHeader>Рассылка сообщений</PanelHeader>
+                <PageHeader />
                 <SubscriptionsList />
-                <UnsubscribeAll unsubscribe_color={unsubscribe_color} />
+                <UnsubscribeAll />
             </Panel>
         </View >
     );
